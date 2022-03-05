@@ -8,7 +8,7 @@ if (!port) {
     process.exit(1);
 }
 
-var server = http.createServer(function(request, response) {
+var server = http.createServer(function (request, response) {
     var parsedUrl = url.parse(request.url, true);
     var pathWithQuery = request.url;
     var queryString = "";
@@ -48,8 +48,8 @@ var server = http.createServer(function(request, response) {
             response.setHeader("Content-Type", "text/javascript;charset=utf-8");
             const string = `window['{{xxx}}']({{data}}) `
             const data = fs.readFileSync("./public/friends.json").toString();
-            const string2 = string.replace("{{data}}", data).replace('{{xxx}}', query.callback);
-            console.log(query.callback)
+            const string2 = string.replace("{{data}}", data).replace('{{xxx}}', query.callback);  // query 代表 URL 查询部分，用“？”表示。
+            console.log(query.callback);
             response.write(string2);
             response.end();
         }
